@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+group 'com.eden'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+file("versions.properties").withReader {
+   Properties versions = new Properties()
+   versions.load(it)
+   project.ext.versions = versions
+}
