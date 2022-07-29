@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.eden'
-version '1.0'
+version "${versions.common}"
 
 repositories {
     mavenCentral()

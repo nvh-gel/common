@@ -1,16 +1,31 @@
-plugins {
-    id 'java'
-}
-
 group 'com.eden'
-version '1.0'
+version "${versions.common}"
 
 repositories {
     mavenCentral()
 }
 
 file("versions.properties").withReader {
-   Properties versions = new Properties()
-   versions.load(it)
-   project.ext.versions = versions
+    Properties versions = new Properties()
+    versions.load(it)
+    project.ext.versions = versions
+}
+
+subprojects {
+    apply plugin: "maven-publish"
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = "https://maven.pkg.github.com/nvh-gel/registry"
+                credentials {
+                    username = findProperty("USER")
+                    password = findProperty("TOKEN")
+                }
+            }
+        }
+        publications {
+            gpr(MavenPublication) {}
+        }
+    }
 }
