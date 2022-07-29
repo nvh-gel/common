@@ -19,8 +19,8 @@ subprojects {
                 name = "GitHubPackages"
                 url = "https://maven.pkg.github.com/nvh-gel/registry"
                 credentials {
-                    username = findProperty("USER")
-                    password = findProperty("TOKEN")
+                    username = project.findProperty("gpr.user") as String ?: System.getenv("USER")
+                    password = project.findProperty("gpr.key") as String ?: System.getenv("TOKEN")
                 }
             }
         }
