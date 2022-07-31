@@ -1,5 +1,4 @@
 group 'com.eden'
-version "${versions.common}"
 
 repositories {
     mavenCentral()
@@ -11,7 +10,10 @@ file("versions.properties").withReader {
     project.ext.versions = versions
 }
 
+version "${versions.common}"
+
 subprojects {
+    apply plugin: "java"
     apply plugin: "maven-publish"
     publishing {
         repositories {
@@ -19,13 +21,15 @@ subprojects {
                 name = "GitHubPackages"
                 url = "https://maven.pkg.github.com/nvh-gel/registry"
                 credentials {
-                    username = project.findProperty("gpr.user") as String ?: System.getenv("USER")
-                    password = project.findProperty("gpr.key") as String ?: System.getenv("TOKEN")
+                    username = System.getenv("REGISTRY_USER")
+                    password = System.getenv("REGISTRY_TOKEN")
                 }
             }
         }
         publications {
-            gpr(MavenPublication) {}
+            mavenJar(MavenPublication) {
+                from components.java
+            }
         }
     }
 }

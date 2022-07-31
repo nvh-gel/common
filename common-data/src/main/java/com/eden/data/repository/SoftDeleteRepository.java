@@ -47,8 +47,9 @@ public interface SoftDeleteRepository<T, I> extends JpaRepository<T, I> {
      *
      * @param id entity id to delete
      */
+    @SuppressWarnings("unused")
     @Transactional
-    @Query("update #{#entityName} e set e.isDeleted = true, e.updatedAt = NOW() where e.id = ?1")
+    @Query("update #{#entityName} e set e.isDeleted = true where e.id = ?1")
     @Modifying
     void softDelete(@NonNull I id);
 }
