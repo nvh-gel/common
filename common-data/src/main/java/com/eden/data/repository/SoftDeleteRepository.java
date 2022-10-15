@@ -71,7 +71,7 @@ public interface SoftDeleteRepository<T, I> extends JpaRepository<T, I> {
      */
     @Transactional(readOnly = true)
     @NonNull
-    @Query("select e from #{#entityName}")
+    @Query("select e from #{#entityName} e")
     List<T> findAllIncludingDeleted();
 
     /**
@@ -82,6 +82,6 @@ public interface SoftDeleteRepository<T, I> extends JpaRepository<T, I> {
      */
     @Transactional(readOnly = true)
     @NonNull
-    @Query("select e from #{#entityName} where e.id = ?1")
+    @Query("select e from #{#entityName} e where e.id = ?1")
     Optional<T> findIncludingDeleted(@NonNull I id);
 }
