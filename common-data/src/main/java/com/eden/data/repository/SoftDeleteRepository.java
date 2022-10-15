@@ -16,6 +16,7 @@ import java.util.Optional;
  * @param <T>  model data type
  * @param <I> model id data type
  */
+@SuppressWarnings("unused")
 @NoRepositoryBean
 public interface SoftDeleteRepository<T, I> extends JpaRepository<T, I> {
 
@@ -43,13 +44,44 @@ public interface SoftDeleteRepository<T, I> extends JpaRepository<T, I> {
     Optional<T> findById(@NonNull I id);
 
     /**
+     * Check if entity with {id} exists
+     * @param id id to check
+     * @return true if found, otherwise, false
+     */
+    @Transactional(readOnly = true)
+    @NonNull
+    default boolean exists(@NonNull I id) {
+        return findById(id).isPresent();
+    }
+
+    /**
      * Soft delete an entity.
      *
      * @param id entity id to delete
      */
-    @SuppressWarnings("unused")
     @Transactional
     @Query("update #{#entityName} e set e.isDeleted = true where e.id = ?1")
     @Modifying
     void softDelete(@NonNull I id);
+
+    /**
+     * Find all entities including deleted ones.
+     *
+     * @return list of entities
+     */
+    @Transactional(readOnly = true)
+    @NonNull
+    @Query("select e from #{#entityName}")
+    List<T> findAllIncludingDeleted();
+
+    /**
+     * Find a single entity by id including deleted one.
+     *
+     * @param id entity id to find
+     * @return optional of found entity
+     */
+    @Transactional(readOnly = true)
+    @NonNull
+    @Query("select e from #{#entityName} where e.id = ?1")
+    Optional<T> findIncludingDeleted(@NonNull I id);
 }
