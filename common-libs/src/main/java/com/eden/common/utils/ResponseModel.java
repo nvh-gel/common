@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * Returned response data to client.
  */
+@SuppressWarnings("unused")
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
