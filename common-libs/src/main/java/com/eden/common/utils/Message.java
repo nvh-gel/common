@@ -7,6 +7,7 @@ import lombok.Getter;
  */
 @Getter
 public enum Message {
+
     SUCCESS("Request successfully."),
     ENTITY_CREATED("Request was accepted, returned creating message id."),
     ENTITY_UPDATED("Request was accepted, returned updating message id."),

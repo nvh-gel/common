@@ -7,6 +7,7 @@ import lombok.Getter;
  */
 @Getter
 public enum ResponseCode {
+
     SUCCESS("200"),
     ACCEPTED("202"),
     NOT_FOUND("404");

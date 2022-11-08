@@ -12,7 +12,7 @@ repositories {
 dependencies {
     implementation project(":common-libs")
     compileOnly "jakarta.persistence:jakarta.persistence-api:${versions.persistence}"
-    compileOnly "org.springframework.data:spring-data-jpa:${versions.springData}"
+    compileOnly "org.hibernate:hibernate-core:${versions.hibernate}"
     implementation "org.projectlombok:lombok:${versions.lombok}"
     implementation "org.mapstruct:mapstruct:${versions.mapstruct}"
     annotationProcessor "org.projectlombok:lombok:${versions.lombok}"
