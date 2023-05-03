@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.eden'
+version = "${versions.common}"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly "org.springframework.data:spring-data-commons:${versions.springData}"
+    compileOnly "org.mongodb:bson:${versions.bson}"
+}

@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.eden'
+version = "${versions.common}"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(":common-libs")
+    implementation project(":common-data")
+    implementation project(":common-nosql")
+
+    implementation "org.mapstruct:mapstruct:${versions.mapstruct}"
+
+    compileOnly "jakarta.persistence:jakarta.persistence-api:${versions.persistence}"
+    compileOnly "org.mongodb:bson:${versions.bson}"
+
+    annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstruct}"
+}

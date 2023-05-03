@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.eden'
+version = "${versions.common}"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly "jakarta.persistence:jakarta.persistence-api:${versions.persistence}"
+    compileOnly "org.hibernate.orm:hibernate-core:${versions.hibernate}"
+
+    testCompileOnly "jakarta.persistence:jakarta.persistence-api:${versions.persistence}"
+}

@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.eden'
+version = "${versions.common}"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation project(":common-libs")
+    compileOnly "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}"
+    testCompileOnly "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}"
+}

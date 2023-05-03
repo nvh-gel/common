@@ -1,0 +1,113 @@
+plugins {
+    id 'java'
+    id 'jacoco-report-aggregation'
+}
+
+group 'com.eden'
+
+repositories {
+    mavenCentral()
+}
+
+file("versions.properties").withReader {
+    Properties versions = new Properties()
+    versions.load(it)
+    project.ext.versions = versions
+}
+
+version "${versions.common}"
+
+jacoco {
+    toolVersion = "${versions.jacoco}"
+}
+
+jar {
+    enabled = false
+}
+
+subprojects {
+    apply plugin: "java"
+    apply plugin: "maven-publish"
+    apply plugin: "jacoco"
+
+    java {
+        withSourcesJar()
+    }
+
+    dependencies {
+        implementation "org.projectlombok:lombok:${versions.lombok}"
+        annotationProcessor "org.projectlombok:lombok:${versions.lombok}"
+        testImplementation platform("org.junit:junit-bom:${versions.junit}")
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+    }
+
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = "https://maven.pkg.github.com/nvh-gel/registry"
+                credentials {
+                    username = System.getenv("REGISTRY_USER")
+                    password = System.getenv("REGISTRY_TOKEN")
+                }
+            }
+        }
+        publications {
+            mavenJar(MavenPublication) {
+                from components.java
+            }
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+        finalizedBy jacocoTestReport, jacocoTestCoverageVerification
+        jacoco {
+            excludes[
+                    "com.eden.queue.util.Action"
+            ]
+        }
+    }
+
+    jacocoTestReport {
+        dependsOn test
+        afterEvaluate {
+            getClassDirectories().setFrom(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        '**/com/eden/queue/util/Action.class',
+                ])
+            })
+        }
+        reports {
+            xml.required.set(false)
+        }
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = 0.1
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation project(":common-libs")
+    implementation project(":common-data")
+    implementation project(":common-nosql")
+    implementation project(":common-mapper")
+    implementation project(":common-queue")
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('testCodeCoverageReport', JacocoReport)
+}
+
+testCodeCoverageReport {
+    reports {
+        xml.required.set(false)
+    }
+}
