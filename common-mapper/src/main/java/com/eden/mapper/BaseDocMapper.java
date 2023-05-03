@@ -7,7 +7,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Abstract mapper for mongodb document and view model
@@ -16,7 +17,7 @@ import java.util.Collection;
  * @param <V> view model
  */
 @SuppressWarnings("unused")
-public interface BaseDocMapper<D extends BaseDocument, V extends BaseVM> {
+public interface BaseDocMapper<V extends BaseVM, D extends BaseDocument> {
 
     /**
      * Map a document to view model.
@@ -44,7 +45,7 @@ public interface BaseDocMapper<D extends BaseDocument, V extends BaseVM> {
      * @param docs document to map
      * @return collection of view models
      */
-    Collection<V> toViewModel(Collection<D> docs);
+    List<V> toViewModel(List<D> docs);
 
     /**
      * Map multiple view models to documents
@@ -52,7 +53,39 @@ public interface BaseDocMapper<D extends BaseDocument, V extends BaseVM> {
      * @param viewModels view models to maps
      * @return collection of document
      */
-    Collection<D> toDocument(Collection<V> viewModels);
+    List<D> toDocument(List<V> viewModels);
+
+    /**
+     * Map multiple documents to view models.
+     *
+     * @param docs document to map
+     * @return collection of view models
+     */
+    Set<V> toViewModel(Set<D> docs);
+
+    /**
+     * Map multiple view models to documents
+     *
+     * @param viewModels view models to maps
+     * @return collection of document
+     */
+    Set<D> toDocument(Set<V> viewModels);
+
+    /**
+     * Map multiple documents to view models.
+     *
+     * @param docs document to map
+     * @return collection of view models
+     */
+    Iterable<V> toViewModel(Iterable<D> docs);
+
+    /**
+     * Map multiple view models to documents
+     *
+     * @param viewModels view models to maps
+     * @return collection of document
+     */
+    Iterable<D> toDocument(Iterable<V> viewModels);
 
     /**
      * Map a single document to the one that need updating.

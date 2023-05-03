@@ -1,8 +1,7 @@
 package com.eden.nosql.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
@@ -12,9 +11,8 @@ import java.util.UUID;
 /**
  * Abstract class to contain basic information for mongodb document.
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public abstract class BaseDocument {
 
     @Id

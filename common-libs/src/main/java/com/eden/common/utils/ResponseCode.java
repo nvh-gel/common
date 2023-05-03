@@ -17,7 +17,6 @@ public enum ResponseCode {
     NOT_FOUND("404"),
 
     INTERNAL_ERROR("500"),
-    UNPROCESSABLE_ENTITY("522"),
     ;
     private final String code;
 

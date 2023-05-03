@@ -20,7 +20,6 @@ public enum ResponseMessage {
     ENTITY_NOT_FOUND("Entity not found."),
 
     INTERNAL_ERROR("Internal error."),
-    UNPROCESSABLE_ENTITY("Cannot process for requested entity."),
     ;
     private final String text;
 

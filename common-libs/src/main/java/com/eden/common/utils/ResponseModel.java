@@ -155,17 +155,4 @@ public class ResponseModel {
                 data,
                 null);
     }
-
-    /**
-     * Return a response for unprocessable request.
-     *
-     * @return response data
-     */
-    public static ResponseModel unprocessableEntity() {
-        return new ResponseModel(
-                ResponseCode.UNPROCESSABLE_ENTITY.getCode(),
-                ResponseMessage.UNPROCESSABLE_ENTITY.getText(),
-                null, null
-        );
-    }
 }

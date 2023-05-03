@@ -6,6 +6,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Abstract mapper.
@@ -14,7 +15,7 @@ import java.util.List;
  * @param <V> view model type
  */
 @SuppressWarnings("unused")
-public interface BaseMapper<M extends BaseModel, V extends BaseVM> {
+public interface BaseMapper<V extends BaseVM, M extends BaseModel> {
 
     /**
      * Map single model to view model.
@@ -49,6 +50,39 @@ public interface BaseMapper<M extends BaseModel, V extends BaseVM> {
      * @return list of models
      */
     List<M> toModel(List<V> viewModels);
+
+    /**
+     * Map multiple models to view models.
+     *
+     * @param models models to map
+     * @return view models
+     */
+
+    Set<V> toViewModel(Set<M> models);
+
+    /**
+     * Map multiple view models.
+     *
+     * @param viewModels view models to map
+     * @return models
+     */
+    Set<M> toModel(Set<V> viewModels);
+
+    /**
+     * Map multiple models to view models.
+     *
+     * @param models models to map
+     * @return view models
+     */
+    Iterable<V> toViewModel(Iterable<M> models);
+
+    /**
+     * Map multiple view models.
+     *
+     * @param viewModels view models to map
+     * @return models
+     */
+    Iterable<M> toModel(Iterable<V> viewModels);
 
     /**
      * Map updated field to an article model.
