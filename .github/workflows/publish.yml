@@ -29,5 +29,5 @@ jobs:
       with:
         arguments: 'build publish'
         credentials:
-          username: ${{secrets.REGISTRY_USER}}
-          password: ${{secrets.REGISTRY_TOKEN}}
+          username: ${secrets.REGISTRY_USER}
+          password: ${secrets.REGISTRY_TOKEN}
