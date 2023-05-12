@@ -19,7 +19,7 @@ public abstract class BaseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private UUID uuid;
-    @Column(columnDefinition = "boolean DEFAULT false")
+    @Column(columnDefinition = "boolean DEFAULT FALSE")
     private boolean isDeleted;
     @Column(columnDefinition = "timestamp DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;

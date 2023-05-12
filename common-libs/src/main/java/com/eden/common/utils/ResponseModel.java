@@ -19,7 +19,6 @@ public class ResponseModel {
     private Object data;
     private Object extra;
 
-
     /**
      * Return a successful response.
      *
@@ -30,6 +29,20 @@ public class ResponseModel {
         return new ResponseModel(
                 ResponseCode.SUCCESS.getCode(),
                 ResponseMessage.SUCCESS.getText(),
+                data,
+                null);
+    }
+
+    /**
+     * Return an accepted response.
+     *
+     * @param data response data
+     * @return response model
+     */
+    public static ResponseModel accepted(Object data) {
+        return new ResponseModel(
+                ResponseCode.ACCEPTED.getCode(),
+                ResponseMessage.ENTITY_ACCEPTED.getText(),
                 data,
                 null);
     }
