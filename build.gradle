@@ -62,22 +62,10 @@ subprojects {
     test {
         useJUnitPlatform()
         finalizedBy jacocoTestReport, jacocoTestCoverageVerification
-        jacoco {
-            excludes[
-                    "com.eden.queue.util.Action"
-            ]
-        }
     }
 
     jacocoTestReport {
         dependsOn test
-        afterEvaluate {
-            getClassDirectories().setFrom(classDirectories.files.collect {
-                fileTree(dir: it, exclude: [
-                        '**/com/eden/queue/util/Action.class',
-                ])
-            })
-        }
         reports {
             xml.required.set(false)
         }
@@ -87,7 +75,7 @@ subprojects {
         violationRules {
             rule {
                 limit {
-                    minimum = 0.1
+                    minimum = 0.10
                 }
             }
         }

@@ -9,6 +9,7 @@ import lombok.Getter;
 public enum ResponseMessage {
 
     SUCCESS("Request completed successfully."),
+    ENTITY_ACCEPTED("Request was accepted, return transaction id."),
     ENTITY_CREATED("Request was accepted, returned creating result."),
     ENTITY_UPDATED("Request was accepted, returned updating result."),
     ENTITY_DELETED("Request was accepted, returned deleting result."),

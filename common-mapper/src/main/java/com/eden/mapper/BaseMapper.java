@@ -4,6 +4,7 @@ import com.eden.common.viewmodel.BaseVM;
 import com.eden.data.model.BaseModel;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
 
 import java.util.List;
 import java.util.Set;
@@ -91,4 +92,15 @@ public interface BaseMapper<V extends BaseVM, M extends BaseModel> {
      * @param update update data
      */
     void mapUpdate(@MappingTarget M model, M update);
+
+    /**
+     * Map a model to model id.
+     *
+     * @param model model to map
+     * @return model id
+     */
+    @Named("modelToModelId")
+    default Long modelToModelId(BaseModel model) {
+        return model == null ? null : model.getId();
+    }
 }
