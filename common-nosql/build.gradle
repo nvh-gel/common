@@ -3,13 +3,13 @@ plugins {
 }
 
 group = 'com.eden'
-version = "${versions.common}"
+version = "${common}"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compileOnly "org.springframework.data:spring-data-commons:${versions.springData}"
-    compileOnly "org.mongodb:bson:${versions.bson}"
+    compileOnly "org.springframework.data:spring-data-commons:${springData}"
+    compileOnly "org.mongodb:bson:${bson}"
 }

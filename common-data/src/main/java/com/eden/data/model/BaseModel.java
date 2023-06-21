@@ -3,6 +3,7 @@ package com.eden.data.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,11 +19,18 @@ public abstract class BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private UUID uuid;
-    @Column(columnDefinition = "boolean DEFAULT FALSE")
+
+    @Column(columnDefinition = "boolean")
+    @ColumnDefault("FALSE")
     private boolean isDeleted;
-    @Column(columnDefinition = "timestamp DEFAULT CURRENT_TIMESTAMP")
+
+    @Column(columnDefinition = "timestamp")
+    @ColumnDefault("CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
-    @Column(columnDefinition = "timestamp DEFAULT CURRENT_TIMESTAMP")
+
+    @Column(columnDefinition = "timestamp")
+    @ColumnDefault("CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
 }

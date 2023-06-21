@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.eden'
-version = "${versions.common}"
+version = "${common}"
 
 repositories {
     mavenCentral()
@@ -12,6 +12,6 @@ repositories {
 dependencies {
 
     implementation project(":common-libs")
-    compileOnly "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}"
-    testCompileOnly "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}"
+    compileOnly "com.fasterxml.jackson.core:jackson-annotations:${jackson}"
+    testCompileOnly "com.fasterxml.jackson.core:jackson-annotations:${jackson}"
 }

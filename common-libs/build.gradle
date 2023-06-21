@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.eden'
-version = "${versions.common}"
+version = "${common}"
 
 repositories {
     mavenCentral()
@@ -11,5 +11,5 @@ repositories {
 
 dependencies {
 
-    implementation "org.apache.commons:commons-lang3:${versions.lang}"
+    implementation "org.apache.commons:commons-lang3:${lang}"
 }

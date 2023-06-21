@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.eden'
-version = "${versions.common}"
+version = "${common}"
 
 repositories {
     mavenCentral()
@@ -14,10 +14,10 @@ dependencies {
     implementation project(":common-data")
     implementation project(":common-nosql")
 
-    implementation "org.mapstruct:mapstruct:${versions.mapstruct}"
+    implementation "org.mapstruct:mapstruct:${mapstruct}"
 
-    compileOnly "jakarta.persistence:jakarta.persistence-api:${versions.persistence}"
-    compileOnly "org.mongodb:bson:${versions.bson}"
+    compileOnly "jakarta.persistence:jakarta.persistence-api:${persistence}"
+    compileOnly "org.mongodb:bson:${bson}"
 
-    annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstruct}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct}"
 }

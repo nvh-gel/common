@@ -9,16 +9,10 @@ repositories {
     mavenCentral()
 }
 
-file("versions.properties").withReader {
-    Properties versions = new Properties()
-    versions.load(it)
-    project.ext.versions = versions
-}
-
-version "${versions.common}"
+version "${common}"
 
 jacoco {
-    toolVersion = "${versions.jacoco}"
+    toolVersion = "${jacoco}"
 }
 
 jar {
@@ -35,9 +29,9 @@ subprojects {
     }
 
     dependencies {
-        implementation "org.projectlombok:lombok:${versions.lombok}"
-        annotationProcessor "org.projectlombok:lombok:${versions.lombok}"
-        testImplementation platform("org.junit:junit-bom:${versions.junit}")
+        implementation "org.projectlombok:lombok:${lombok}"
+        annotationProcessor "org.projectlombok:lombok:${lombok}"
+        testImplementation platform("org.junit:junit-bom:${junit}")
         testImplementation 'org.junit.jupiter:junit-jupiter'
     }
 
