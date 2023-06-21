@@ -22,15 +22,12 @@ public abstract class BaseModel {
 
     private UUID uuid;
 
-    @Column(columnDefinition = "boolean")
     @ColumnDefault("FALSE")
     private boolean isDeleted;
 
-    @Column(columnDefinition = "timestamp")
     @ColumnDefault("CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
-    @Column(columnDefinition = "timestamp")
     @ColumnDefault("CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
 }
