@@ -46,8 +46,9 @@
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-# *.iml
+*.iml
 # *.ipr
+**/*.iml
 
 # CMake
 cmake-build-*/
@@ -142,5 +143,7 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+.jpb
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all

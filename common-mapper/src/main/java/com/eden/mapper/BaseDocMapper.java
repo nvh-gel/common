@@ -114,6 +114,9 @@ public interface BaseDocMapper<V extends BaseVM, D extends BaseDocument> {
      */
     @Named("mapStringToObjectId")
     default ObjectId mapStringToObjectId(String string) {
+        if (string == null) {
+            return null;
+        }
         return ObjectId.isValid(string) ? new ObjectId(string) : null;
     }
 

@@ -130,7 +130,7 @@ public class ResponseModel {
     }
 
     /**
-     * Return a access forbidden response.
+     * Return an access forbidden response.
      *
      * @return response data
      */
